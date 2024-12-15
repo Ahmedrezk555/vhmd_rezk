@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed.Rezk</title>
+    <style>
+        /* Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Transition Effects */
+        .hidden {
+            display: none;
+        }
+
+        .fade-blur {
+            animation: fadeBlur 2s forwards;
+        }
+
+        @keyframes fadeBlur {
+            0% {
+                opacity: 1;
+                filter: blur(0);
+            }
+            50% {
+                opacity: 0.5;
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 0;
+                filter: blur(20px);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                filter: blur(20px);
+            }
+            50% {
+                opacity: 0.5;
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        /* Login Page */
+        .container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background: #000;
+        }
+
+        .login {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            outline: none;
+            position: relative;
+            font-size: 24px;
+            color: #fff;
+            transition: color 0.3s;
+            font-weight: bold;
+        }
+
+        /* Fire Effect */
+        .fire {
+            animation: bloodEffect 0.1s linear forwards;
+        }
+
+        @keyframes bloodEffect {
+            0% {
+                text-shadow: 0 0 0 #f00, 0 0 15px #f00, 0 0 30px #f00;
+            }
+            50% {
+                text-shadow: 0 0 15px #f00, 0 0 30px #f00;
+            }
+            100% {
+                text-shadow: 0 0 0 #f00, 0 0 15px #f00, 0 0 30px #f00;
+            }
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .instagram-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Error message */
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .gallery img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer; /* لجعل الصورة قابلة للنقر */
+        }
+
+        .blog {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        /* Shattering Effect */
+        @keyframes shatter {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+            100% {
+                display: none;
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* New Password Input */
+        .new-password-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .new-password {
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            outline: none;
+            font-size: 24px;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Third Page */
+        .third-page {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #000;
+            color: #fff;
+        }
+
+        .third-page h1 {
+            margin-bottom: 20px;
+        }
+
+        .third-page p {
+            font-size: 1.2em;
+        }
+
+        /* Password input style */
+        .password-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 24px;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+
+        .password-box input {
+            border: none;
+            outline: none;
+            color: #fff;
+            background-color: transparent;
+            flex: 1;
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- صفحة تسجيل الدخول -->
+    <div class="container" id="login-page">
+        <div class="login">
+            <h1>I'm, Ahmed.Rezk</h1>
+            <p>Enter Password to Continue</p>
+            <div class="user">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Icon" class="instagram-icon" onclick="shatterImage(this)">
+                <span>a7md.rezk</span>
+            </div>
+            <div class="password-box">
+                <input type="password" id="password" placeholder="Password" onfocus="changeInputColor(this, '#333')" onblur="changeInputColor(this, '#fff')" oninput="applyFireAnimation(this)">
+            </div>
+            <div id="error-message" class="error-message"></div>
+            <br>
+            <button onclick="checkPassword()">Login</button>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content" id="main-content">
+        <header>
+            <h1>Ahmed.Rezk</h1>
+            <p>مرحبًا بك! هذه الصفحة الرئيسية.</p>
+        </header>
+
+        <div class="gallery">
+            <h2>⚙️</h2>
+            <img src="https://assets.onecompiler.app/4332z9fus/4332yyf4x/Picsart_24-07-04_17-30-09-033.jpg" alt="صورة 1" onclick="shatterImage(this)">
+        </div>
+
+        <div class="blog">
+            <h2>You may look at what I see, but you do not see what I see</h2>
+            <div class="blog-post">
+              <div>🏔️</div>
+                <h3>● DÈJÀ VU ●</h3>
+                <p>● BNNIT ●</p>
+            </div>
+            <div class="blog-post">
+                <h3>● BBLSH ●</h3>
+                <p>● RHLFRE ●</p>
+            </div>
+        </div>
+
+        <div class="new-password-container" id="new-password-container">
+            <h3>Enter the new password</h3>
+            <input type="password" id="new-password" placeholder="0000" oninput="validateNewPassword(this)">
+        </div>
+
+        <footer>
+            <p>© 2024 جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <!-- الصفحة الثالثة -->
+    <div class="third-page" id="third-page">
+        <header>
+            <h1>Welcome to Ahmed.Rezk's Secret Area</h1>
+            <p>You have successfully logged in!</p>
+        </header>
+        <footer>
+            <p>© 2024 جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            if (password === '1111') {
+                // إضافة تأثير الغموض
+                const loginPage = document.getElementById('login-page');
+                const mainContent = document.getElementById('main-content');
+
+                loginPage.classList.add('fade-blur');
+                setTimeout(() => {
+                    loginPage.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    mainContent.classList.add('fade-in');
+                }, 2000); // مدة التأثير: 2 ثانية
+            } else {
+                errorMessage.textContent = 'كلمة المرور غير صحيحة!';
+            }
+        }
+
+        function shatterImage(image) {
+            image.classList.add('shatter');
+            setTimeout(() => {
+                image.style.display = 'none';
+                document.getElementById('new-password-container').style.display = 'block';
+            }, 500); // مدة التأثير: 0.5 ثانية
+        }
+
+        function changeInputColor(input, color) {
+            input.style.color = color;
+        }
+
+        function applyFireAnimation(input) {
+            if (input.value.length > 0) {
+                input.classList.add('fire');
+            } else {
+                input.classList.remove('fire');
+            }
+        }
+
+        function validateNewPassword(input) {
+            const newPassword = input.value;
+            if (newPassword === '1111') {
+                // إذا كانت كلمة المرور الجديدة صحيحة، انتقل إلى الصفحة الثالثة
+                document.getElementById('main-content').style.display = 'none';
+                document.getElementById('third-page').style.display = 'block';
+            } else {
+                // عرض رسالة خطأ إذا كانت كلمة المرور خاطئة
+                alert('كلمة المرور غير صحيحة!');
+            }
+        }
+    </script>
+</body>
+</html>
